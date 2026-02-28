@@ -7,8 +7,8 @@ const PORT = 3001
 
 app.use(cors())
 
-// Proxy /v1/* to whatever host the client sends in X-Proxy-Target
-app.use('/v1', createProxyMiddleware({
+// Proxy all requests to whatever host the client sends in X-Proxy-Target
+app.use('/', createProxyMiddleware({
   changeOrigin: true,
   router: (req) => req.headers['x-proxy-target'] ?? 'http://192.168.0.51:9080',
   on: {
